@@ -1,0 +1,38 @@
+.image {
+    width: 30%;
+    display: inline-block;
+}
+
+.image > img {
+    width: 100%;
+}
+
+.desc {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.contact {
+    padding: 10px 0px 0px 40px;
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.bikeOfTheDay {
+    outline: 2px solid black;
+}
+
+.login {
+    width: 45%;
+    margin: 50px 0px 0px 0px;
+    display: inline-block;
+}
+
+.registration {
+    width: 45%;
+    margin: 50px 0px 0px 0px;
+    display: inline-block;
+    vertical-align: top;
+}

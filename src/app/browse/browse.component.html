@@ -1,0 +1,58 @@
+<h1 class="page-header"><a [routerLink]="['']">Bicycle Marketplace</a> </h1>
+
+<nav>
+  <ul>
+    <li><a [routerLink]="['/browse']">Browse</a></li>
+    <li><a [routerLink]="['/listings']">My Listings</a></li>
+    <li (click)="logout(userId)">Logout</li>
+  </ul>
+</nav>
+
+<div class="search">
+  <form >
+    <label for="search">Search:
+      <input type="search">
+      <button class="btn btn-default">Search</button>
+    </label>
+  </form>
+</div>
+
+<div class="listings">
+  <div *ngFor='let bicycle of bicycles' class="bicycle">
+    <div class="image">
+      <img src="/assets/uploads/{{bicycle.image}}" alt="image for {{bicycle.image}}">
+    </div>
+    <div class="desc">
+      <h3>{{ bicycle.title }}</h3>
+      <p>{{ bicycle.description }}</p>
+    </div>
+    <div class="contact">
+      <h1>{{ bicycle.price }}</h1>
+      <p>{{ bicycle.location }}</p>
+      <button *ngIf='userID == bicycle.owner._id'class="btn btn-danger" (click)='delete(bicycle._id)'>Delete</button>
+      <button *ngIf='userID != bicycle.owner._id' class="btn btn-default" data-toggle="modal" data-target="#myModal" (click)='contact(bicycle.owner)'>Contact</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Contact the bicycle Owner</h4>
+        </div>
+        <div class="modal-body">
+          <p>Name: {{ownerToContact.first_name}}</p>
+          <p>Email: <a href="mailto:{{ownerToContact.email}}">{{ownerToContact.email}}</a></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

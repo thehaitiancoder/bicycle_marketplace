@@ -1,0 +1,72 @@
+<h1 class="page-header"><a [routerLink]="['']">Bicycle Marketplace</a> </h1>
+
+<nav>
+  <ul>
+    <li><a [routerLink]="['/browse']">Browse</a></li>
+    <li><a [routerLink]="['/listings']">My Listings</a></li>
+    <li (click)="logout(userId)">Logout</li>
+  </ul>
+</nav>
+
+<div class="newListing">
+  <h1>Create Listing</h1>
+  <form (submit)='OnSubmit(form)' #form='ngForm' enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" name="title" [(ngModel)]='bicycle.title' #title='ngModel'>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea name="description" class="form-control" [(ngModel)]='bicycle.description' #description='ngModel' cols="12" rows="4"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" class="form-control" name="price" [(ngModel)]='bicycle.price' #price='ngModel'>
+    </div>
+    <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" class="form-control" name="location" [(ngModel)]='bicycle.location' #location='ngModel'>
+    </div>
+    <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" class="form-control" name="image" (change)='fileChangeEvent($event)'>
+        <div *ngIf='imageUploaded'>
+            <h4>Your picture was uploaded</h4>
+        </div>
+    </div>
+    <button class="btn btn-default">Create</button>
+  </form>
+</div>
+
+<div class="listings">
+  <h2>Edit/Delete Listings</h2>
+  <div *ngFor='let bicycle of bicycles' class="bicycle">
+    <form (submit)='updateListing(bicycle)' #form='ngForm' enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" name="title" [(ngModel)]='bicycle.title' #title='ngModel' disabled>
+      </div>
+      <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea name="description" class="form-control" [(ngModel)]='bicycle.description' #description='ngModel' cols="12" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+          <label for="price">Price:</label>
+          <input type="number" class="form-control" name="price" [(ngModel)]='bicycle.price' #price='ngModel'>
+      </div>
+      <div class="form-group">
+          <label for="location">Location:</label>
+          <input type="text" class="form-control" name="location" [(ngModel)]='bicycle.location' #location='ngModel'>
+      </div>
+      <div class="form-group">
+          <label for="image">Image (Choose a diferent file to change the picture):</label>
+          <input type="file" class="form-control" name="image" (change)='fileChangeEvent($event)'>
+          <div class="bicPic">
+              <img src="/assets/uploads/{{bicycle.image}}" alt="pic for {{bicycle.title}}">
+          </div>
+      </div>
+      <button class="btn btn-default">Update</button>
+    </form>
+    <button class="btn btn-danger" (click)='delete(bicycle._id)'>Delete</button>
+  </div>
+</div>

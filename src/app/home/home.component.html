@@ -1,0 +1,27 @@
+<h1 class="page-header"><a [routerLink]="['']">Bicycle Marketplace</a> </h1>
+
+<div class="bikeOfTheDay">
+    <div *ngFor='let bicycle of bicycles'>
+        <div class="image">
+          <img src="/assets/uploads/{{bicycle.image}}" alt="image for {{bicycle.image}}">
+        </div>
+        <div class="desc">
+          <h3>{{ bicycle.title }}</h3>
+          <p>{{ bicycle.description }}</p>
+        </div>
+        <div class="contact">
+          <h1>{{ bicycle.price }}</h1>
+          <p>{{ bicycle.location }}</p>
+        </div>
+      </div>
+</div>
+
+<div class="userSigning">
+  <div class="login">
+    <user-login></user-login>
+  </div>
+
+  <div class="registration">
+    <user-registration></user-registration>
+  </div>
+</div>
